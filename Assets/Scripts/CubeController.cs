@@ -9,6 +9,10 @@ public class CubeController : MonoBehaviour {
 	// 消滅位置
 	private float deadLine = -10;
 
+	public AudioClip audioClip;
+
+	private AudioSource audioSource;
+
 	// Use this for initialization
 	void Start(){
 	}
@@ -27,8 +31,11 @@ public class CubeController : MonoBehaviour {
 	//トリガーモードで他のオブジェクトと接触した場合の処理（追加）
 	void OnCollisionEnter2D(Collision2D other) {
 
-		//障害物に衝突した場合（追加）
-		if (other.gameObject.tag == "CubeTag" || other.gameObject.tag == "groudTag") {
+		//障害物に衝突した場合
+
+		audioSource = GetComponent<AudioSource>();
+		audioSource.Play ();
+		if (other.gameObject.tag == "CubeTag" || other.gameObject.tag == "groundTag") {
 			// 地面に接触したとき／ブロック同士が衝突したときにボリュームを上げる
 			GetComponent<AudioSource> ().volume = 1;
 		} else {
@@ -37,8 +44,9 @@ public class CubeController : MonoBehaviour {
 				GetComponent<AudioSource> ().volume = 0;
 			} else {
 				GetComponent<AudioSource> ().volume = 0;
+
 			}
 		}
-	}
 
+	}
 }
