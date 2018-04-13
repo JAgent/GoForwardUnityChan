@@ -25,7 +25,7 @@ public class CubeController : MonoBehaviour {
 	}
 
 	//トリガーモードで他のオブジェクトと接触した場合の処理（追加）
-	void OnTriggerEnter(Collider other) {
+	void OnCollisionEnter2D(Collision2D other) {
 
 		//障害物に衝突した場合（追加）
 		if (other.gameObject.tag == "CubeTag" || other.gameObject.tag == "groudTag") {
